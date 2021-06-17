@@ -1,0 +1,18 @@
+
+GET http://localhost:3000/users
+
+###
+
+POST http://localhost:3000/signup
+Content-Type: application/json
+
+{
+  "name": "Nikolas",
+  "email": "burk@prisma.io"
+}
+
+###
+
+PUT http://localhost:3000/post/1/views
+
+###
