@@ -1,7 +1,8 @@
 <%- include("../partials/header"); %>
 <h1>Protected Route</h1>
 <h2>
-  You are <% if (!authenticated) { %>not <% }  %>authenticated.
+  You are <% if (!authenticated) { %>not <% }  %>authenticated
+  <% if (admin) { %>and you are an admin.<% } %>
 </h2>
 <p>
   <% if (authenticated) { %>

@@ -2,6 +2,7 @@ const router = require("express").Router();
 const passport = require("passport");
 const { genPassword } = require("../lib/passwordUtils");
 const { connection } = require("../config/database");
+const { isAuth, isAdmin } = require("../lib/authMiddleware.js");
 
 const User = connection.models.User;
 
@@ -24,16 +25,24 @@ router.get("/register", (req, res, next) => {
   res.render("./pages/register");
 });
 router.post("/register", (req, res, next) => {
-  const { password, username } = req.body;
+  const { password, username, admin } = req.body;
   const { salt, hash } = genPassword(password);
-  const user = new User({ username, hash, salt });
+  const user = new User({ username, hash, salt, admin: admin === "on" });
   user.save();
   res.redirect("/login");
 });
 
-router.get("/protected-route", (req, res, next) => {
+router.get("/protected-route", isAuth, (req, res, next) => {
   res.render("./pages/protectedRoute", {
     authenticated: req.isAuthenticated(),
+    admin: false,
+  });
+});
+
+router.get("/admin-route", isAdmin, (req, res, next) => {
+  res.render("./pages/protectedRoute", {
+    authenticated: req.isAuthenticated(),
+    admin: true,
   });
 });
 
