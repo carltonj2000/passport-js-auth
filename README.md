@@ -30,3 +30,8 @@ Watched video 4 before 3 because I believe the play order is incorrect.
 ## Video 3 - Your complete guide to understanding the express-session
 
 ## Video 5 - Passport Local Configuration (Node + Passport + Express)
+
+## Video 6 - Passport Local Strategy Usage (Node + Passport + Express)
+
+The video content for this section is stored in the `vid5...` directory.
+Added admin user options.
